@@ -5,7 +5,11 @@ import CardWrapper from '@/app/ui/dashboard/cards';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchCardData, } from '@/app/lib/data';
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+    title: 'Dashboard',
+};
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton, } from '@/app/ui/skeletons';
 
 export default async function Page() {
