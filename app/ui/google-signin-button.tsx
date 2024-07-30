@@ -1,13 +1,24 @@
-import { signIn } from 'next-auth/react';
+'use client'
+import { signIn } from 'next-auth/react'
+import { Button } from '@/app/ui/button'
 
-const GoogleSignInButton = ({ callbackUrl }: { callbackUrl: string }) => {
+interface GoogleSignInButtonProps {
+    children: React.ReactNode;
+    callbackUrl: string;
+}
+
+const GoogleSignInButton = ({ children, callbackUrl }: GoogleSignInButtonProps) => {
+    const loginWithGoogle = async () => {
+        await signIn('google', { callbackUrl });
+    };
+
     return (
-        <button
-            onClick={() => signIn('google', { callbackUrl })}
-            className="mt-4 w-full bg-blue-500 text-white py-2 rounded"
+        <Button
+            onClick={loginWithGoogle}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         >
-            Sign in with Google
-        </button>
+            {children}
+        </Button>
     );
 };
 
